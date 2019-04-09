@@ -2,10 +2,10 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Job Manager - Applications 2.4.0\n"
+"Project-Id-Version: WP Job Manager - Applications 2.4.1\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wp-job-manager-applications\n"
-"POT-Creation-Date: 2018-07-26 18:51:11+00:00\n"
+"POT-Creation-Date: 2018-12-20 16:03:23+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +19,7 @@ msgid "Settings"
 msgstr ""
 
 #: includes/class-wp-job-manager-applications-admin.php:73
-#: includes/class-wp-job-manager-applications-dashboard.php:266
+#: includes/class-wp-job-manager-applications-dashboard.php:268
 msgid "Applications"
 msgstr ""
 
@@ -86,7 +86,7 @@ msgid "Attachment(s)"
 msgstr ""
 
 #: includes/class-wp-job-manager-applications-admin.php:163
-#: includes/class-wp-job-manager-applications-form-editor.php:143
+#: includes/class-wp-job-manager-applications-form-editor.php:161
 msgid "Resume"
 msgstr ""
 
@@ -117,7 +117,7 @@ msgid "by a guest"
 msgstr ""
 
 #: includes/class-wp-job-manager-applications-admin.php:232
-#: includes/wp-job-manager-applications-template.php:86
+#: includes/wp-job-manager-applications-template.php:94
 msgid "by %s"
 msgstr ""
 
@@ -134,48 +134,48 @@ msgstr ""
 msgid "Applications for all jobs"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-apply.php:35
-#: includes/class-wp-job-manager-applications-apply.php:273
+#: includes/class-wp-job-manager-applications-apply.php:36
+#: includes/class-wp-job-manager-applications-apply.php:288
 msgid "\"%s\" is a required field"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-apply.php:122
+#: includes/class-wp-job-manager-applications-apply.php:137
 msgid "Choose an option"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-apply.php:165
+#: includes/class-wp-job-manager-applications-apply.php:180
 msgid "Choose an online resume..."
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-apply.php:243
+#: includes/class-wp-job-manager-applications-apply.php:258
 msgid "Invalid job"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-apply.php:247
+#: includes/class-wp-job-manager-applications-apply.php:262
 msgid "That job is not available"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-apply.php:251
+#: includes/class-wp-job-manager-applications-apply.php:266
 msgid "You have already applied for this job"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-apply.php:283
+#: includes/class-wp-job-manager-applications-apply.php:298
 msgid "Please provide a valid email address"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-apply.php:288
+#: includes/class-wp-job-manager-applications-apply.php:303
 msgid "Please enter a number"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-apply.php:352
+#: includes/class-wp-job-manager-applications-apply.php:367
 msgid "Yes"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-apply.php:352
+#: includes/class-wp-job-manager-applications-apply.php:367
 msgid "No"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-apply.php:368
+#: includes/class-wp-job-manager-applications-apply.php:383
 msgid "Could not create job application"
 msgstr ""
 
@@ -221,7 +221,7 @@ msgid "Applicant email"
 msgstr ""
 
 #: includes/class-wp-job-manager-applications-dashboard.php:204
-#: includes/class-wp-job-manager-applications-form-editor.php:125
+#: includes/class-wp-job-manager-applications-form-editor.php:143
 #: includes/class-wp-job-manager-applications-writepanels.php:37
 msgid "Attachment"
 msgstr ""
@@ -230,26 +230,26 @@ msgstr ""
 msgid "Applicant message"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-dashboard.php:295
+#: includes/class-wp-job-manager-applications-dashboard.php:297
 msgid "You do not have permission to view this job."
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-dashboard.php:337
+#: includes/class-wp-job-manager-applications-dashboard.php:339
 msgid "Name"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-dashboard.php:338
-#: includes/class-wp-job-manager-applications-form-editor.php:118
+#: includes/class-wp-job-manager-applications-dashboard.php:340
+#: includes/class-wp-job-manager-applications-form-editor.php:136
 #: templates/job-application-footer.php:29
 msgid "Email"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-dashboard.php:339
+#: includes/class-wp-job-manager-applications-dashboard.php:341
 msgid "Date Received"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-dashboard.php:382
-#: includes/wp-job-manager-applications-template.php:87
+#: includes/class-wp-job-manager-applications-dashboard.php:374
+#: includes/wp-job-manager-applications-template.php:95
 msgid "Delete note"
 msgstr ""
 
@@ -257,160 +257,160 @@ msgstr ""
 msgid "Application Form"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:30
+#: includes/class-wp-job-manager-applications-form-editor.php:47
 msgid "Are you sure you want to delete this row?"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:31
+#: includes/class-wp-job-manager-applications-form-editor.php:48
 msgid "Are you sure you want to reset your changes? This cannot be undone."
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:41
+#: includes/class-wp-job-manager-applications-form-editor.php:60
 msgid "Form Fields"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:85
+#: includes/class-wp-job-manager-applications-form-editor.php:103
 msgid "The fields were successfully reset."
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:116
+#: includes/class-wp-job-manager-applications-form-editor.php:134
 msgid "Validation"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:117
+#: includes/class-wp-job-manager-applications-form-editor.php:135
 msgid "Required"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:119
+#: includes/class-wp-job-manager-applications-form-editor.php:137
 msgid "Numeric"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:121
+#: includes/class-wp-job-manager-applications-form-editor.php:139
 msgid "Data Handling"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:122
+#: includes/class-wp-job-manager-applications-form-editor.php:140
 msgid "From Name"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:123
+#: includes/class-wp-job-manager-applications-form-editor.php:141
 msgid "From Email"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:124
+#: includes/class-wp-job-manager-applications-form-editor.php:142
 #: includes/wp-job-manager-applications-functions.php:200
 msgid "Message"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:137
+#: includes/class-wp-job-manager-applications-form-editor.php:155
 msgid "Text"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:138
+#: includes/class-wp-job-manager-applications-form-editor.php:156
 msgid "Textarea"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:139
+#: includes/class-wp-job-manager-applications-form-editor.php:157
 msgid "File"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:140
+#: includes/class-wp-job-manager-applications-form-editor.php:158
 msgid "Select"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:141
+#: includes/class-wp-job-manager-applications-form-editor.php:159
 msgid "Multiselect"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:142
+#: includes/class-wp-job-manager-applications-form-editor.php:160
 msgid "Checkbox"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:144
+#: includes/class-wp-job-manager-applications-form-editor.php:162
 msgid "Output content"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:155
+#: includes/class-wp-job-manager-applications-form-editor.php:173
 msgid "Field Label"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:156
+#: includes/class-wp-job-manager-applications-form-editor.php:174
 msgid "Type"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:157
+#: includes/class-wp-job-manager-applications-form-editor.php:175
 msgid "Description"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:158
+#: includes/class-wp-job-manager-applications-form-editor.php:176
 msgid "Placeholder / Options"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:159
+#: includes/class-wp-job-manager-applications-form-editor.php:177
 msgid "Validation / Rules"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:166
+#: includes/class-wp-job-manager-applications-form-editor.php:184
 msgid "Add field"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:169
-#: includes/class-wp-job-manager-applications-form-editor.php:300
-#: includes/class-wp-job-manager-applications-form-editor.php:355
+#: includes/class-wp-job-manager-applications-form-editor.php:187
+#: includes/class-wp-job-manager-applications-form-editor.php:318
+#: includes/class-wp-job-manager-applications-form-editor.php:373
 msgid "Reset to defaults"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:170
-#: includes/class-wp-job-manager-applications-form-editor.php:301
-#: includes/class-wp-job-manager-applications-form-editor.php:356
+#: includes/class-wp-job-manager-applications-form-editor.php:188
+#: includes/class-wp-job-manager-applications-form-editor.php:319
+#: includes/class-wp-job-manager-applications-form-editor.php:374
 msgid "Save Changes"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:245
+#: includes/class-wp-job-manager-applications-form-editor.php:263
 msgid "The fields were successfully saved."
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:272
-#: includes/class-wp-job-manager-applications-form-editor.php:327
+#: includes/class-wp-job-manager-applications-form-editor.php:290
+#: includes/class-wp-job-manager-applications-form-editor.php:345
 msgid "The email was successfully reset."
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:279
+#: includes/class-wp-job-manager-applications-form-editor.php:297
 msgid ""
 "Below you will find the email that is sent to an employer after a candidate "
 "submits an application."
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:283
-#: includes/class-wp-job-manager-applications-form-editor.php:338
+#: includes/class-wp-job-manager-applications-form-editor.php:301
+#: includes/class-wp-job-manager-applications-form-editor.php:356
 msgid "Subject"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:290
-#: includes/class-wp-job-manager-applications-form-editor.php:345
+#: includes/class-wp-job-manager-applications-form-editor.php:308
+#: includes/class-wp-job-manager-applications-form-editor.php:363
 msgid "The following tags can be used to add content dynamically:"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:296
-#: includes/class-wp-job-manager-applications-form-editor.php:351
+#: includes/class-wp-job-manager-applications-form-editor.php:314
+#: includes/class-wp-job-manager-applications-form-editor.php:369
 msgid ""
 "All tags can be passed a prefix and a suffix which is only output when the "
 "value is set e.g. <code>[job_title prefix=\"Job Title: \" "
 "suffix=\".\"]</code>"
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:316
-#: includes/class-wp-job-manager-applications-form-editor.php:371
+#: includes/class-wp-job-manager-applications-form-editor.php:334
+#: includes/class-wp-job-manager-applications-form-editor.php:389
 msgid "The email was successfully saved."
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:334
+#: includes/class-wp-job-manager-applications-form-editor.php:352
 msgid ""
 "Below you will find the email that is sent to a candidate after submitting "
 "an application. Leave blank to disable."
 msgstr ""
 
-#: includes/class-wp-job-manager-applications-form-editor.php:341
+#: includes/class-wp-job-manager-applications-form-editor.php:359
 #: includes/views/html-form-field-editor-row.php:16
 #: includes/views/html-form-field-editor-row.php:19
 msgid "N/A"
@@ -779,15 +779,15 @@ msgstr ""
 msgid "Custom field named \"%s\""
 msgstr ""
 
-#: includes/wp-job-manager-applications-template.php:85
+#: includes/wp-job-manager-applications-template.php:93
 msgid "added %s ago"
 msgstr ""
 
-#: includes/wp-job-manager-applications-template.php:96
+#: includes/wp-job-manager-applications-template.php:104
 msgid "Private note regarding this application"
 msgstr ""
 
-#: includes/wp-job-manager-applications-template.php:97
+#: includes/wp-job-manager-applications-template.php:105
 msgid "Add note"
 msgstr ""
 

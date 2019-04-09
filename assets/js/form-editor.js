@@ -1,4 +1,10 @@
 jQuery(document).ready(function($) {
+	var wpjm_application_form_editor_select2_args = {
+		minimumResultsForSearch: 10
+	};
+	if ( 1 === parseInt( wp_job_manager_applications_form_editor.is_rtl, 10 ) ) {
+		wpjm_application_form_editor_select2_args.dir = 'rtl';
+	}
 
 	$('.wp-job-manager-applications-form-editor')
 		.on( 'init', function() {
@@ -22,17 +28,42 @@ jQuery(document).ready(function($) {
 				}
 			});
 			$(this).find( '.field-type select' ).change();
-			$(this).find( '.field-rules select' ).chosen().change();
+
+			if ( $.isFunction( $.fn.select2 ) ) {
+				$(this).find( '.field-rules select' ).select2( wpjm_application_form_editor_select2_args ).change();
+			} else if ( $.isFunction( $.fn.chosen ) ) {
+				$(this).find( '.field-rules select' ).chosen().change();
+			}
 		})
-		.on( 'change', '.field-rules select', function( evt, params ) {
-			if ( undefined !== params && undefined !== params.deselected ) {
-				$( '.field-rules select' ).each(function() {
-					$(this).find( 'option[value=' + params.deselected + ']' ).removeProp( 'disabled' );
-					$(this).trigger( 'chosen:updated' );
-				});
+		.on( 'rules:refresh', '.field-rules select', function( evt, params ) {
+			if ( $.isFunction( $.fn.select2 ) ) {
+				var self = this;
+				setTimeout( function() {
+					$(self).select2();
+				}, 500 );
+
+			} else {
+				$(this).trigger( 'chosen:updated' );
+			}
+		} )
+		.on( 'rule:deselect', '.field-rules select', function( evt, params ) {
+			if ( undefined === params.deselected ) {
 				return;
 			}
-
+			$( '.field-rules select' ).each(function() {
+				$(this).find( 'option[value=' + params.deselected + ']' ).removeProp( 'disabled' );
+				$(this).trigger( 'rules:refresh' );
+			});
+		} )
+		.on( 'select2:unselect', '.field-rules select', function( evt ) {
+			var data = evt.params.data;
+			$(this).trigger( 'rule:deselect', { 'deselected': data.id } );
+		} )
+		.on( 'change', '.field-rules select', function( evt, params ) {
+			if ( undefined !== params && undefined !== params.deselected ) {
+				$(this).trigger( 'rule:deselect', params );
+				return;
+			}
 			var $self = $(this);
 			var unique_selected = [];
 			jQuery.each( $(this).val(), function( i, option_key ) {
@@ -50,7 +81,7 @@ jQuery(document).ready(function($) {
 					jQuery.each( unique_selected, function( i, option_key ) {
 						$selector.find( 'option[value=' + option_key + ']' ).prop( 'disabled', true ).removeProp( 'selected' );
 					});
-					$(this).trigger( 'chosen:updated' );
+					$(this).trigger( 'rules:refresh' );
 				});
 			}
 		})
@@ -75,9 +106,19 @@ jQuery(document).ready(function($) {
 
 			if ( 'output-content' === $(this).val() ) {
 				$(this).closest('tr').find('.field-rules .na').show();
+				$rules = $(this).closest('tr').find('.field-rules select');
+				jQuery.each( $rules.val(), function( i, value ) {
+					$rules.trigger( 'rule:deselect', { deselected: value } );
+				} );
+				$rules.val( '' );
+
 			} else {
 				$(this).closest('tr').find( '.field-rules .rules' ).show();
-				$(this).closest('tr').find( '.field-rules select:visible' ).chosen();
+				if ( $.isFunction( $.fn.select2 ) ) {
+					$(this).closest('tr').find( '.field-rules select:visible' ).select2( wpjm_application_form_editor_select2_args );
+				} else if ( $.isFunction( $.fn.chosen ) ) {
+					$(this).closest('tr').find( '.field-rules select:visible' ).chosen();
+				}
 			}
 		})
 		.on( 'click', '.delete-field', function() {

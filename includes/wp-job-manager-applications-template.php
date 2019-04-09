@@ -7,7 +7,15 @@ if ( ! function_exists( 'job_application_meta' ) ) {
 	 */
 	function job_application_meta( $application ) {
 		if ( 'job_application' === $application->post_type ) {
-			$meta    = get_post_custom( $application->ID );
+			/**
+			 * Allows for filtering of job application meta.
+			 *
+			 * @since 2.4.1
+			 *
+			 * @params array    $meta        All post meta (see `get_post_custom`) in a multidimensional array.
+			 * @params WP_Post  $application Application post object.
+			 */
+			$meta    = apply_filters( 'job_application_meta', get_post_custom( $application->ID ), $application );
 			$hasmeta = false;
 			if ( $meta ) {
 				foreach ( $meta as $key => $value ) {

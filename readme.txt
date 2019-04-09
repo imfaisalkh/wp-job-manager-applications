@@ -1,8 +1,8 @@
 [=== Job Applications ===
 Contributors: mikejolley, jakeom, panoskountanis, adamkheckler, drawmyface
 Requires at least: 4.1
-Tested up to: 4.9
-Stable tag: 2.4.0
+Tested up to: 5.0
+Stable tag: 2.4.1
 License: GNU General Public License v3.0
 
 Lets candidates submit applications to jobs which are stored on the employers jobs page, rather than simply emailed.
@@ -28,6 +28,12 @@ If you need help with customisation you will need to find and hire a developer c
 To install this plugin, please refer to the guide here: [http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation)
 
 == Changelog ==
+
+= 2.4.1 = 
+* Change - Move to Select2 for enhanced select fields and support with WP Job Manager 1.32.0 asset management.
+* Fix - In form editor, clear rules when switching to output content field.
+* Fix - Properly format CSV export of job listing applications.
+* Dev - Adds `job_application_meta` filter.
 
 = 2.4.0 =
 * Feature - Adds user data export using WordPress core's "Export Personal Data" tool.

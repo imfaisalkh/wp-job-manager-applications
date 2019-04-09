@@ -10,7 +10,7 @@ class WP_Job_Manager_Applications_Form_Editor {
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 11 );
 	}
 
 	/**
@@ -24,19 +24,38 @@ class WP_Job_Manager_Applications_Form_Editor {
 	 * Register scripts
 	 */
 	public function admin_enqueue_scripts() {
-		wp_register_script( 'wp-job-manager-applications-form-editor', plugins_url( '/assets/js/form-editor.min.js', JOB_MANAGER_APPLICATIONS_FILE ), array( 'jquery', 'jquery-ui-sortable', 'chosen' ), JOB_MANAGER_APPLICATIONS_VERSION, true );
-		wp_register_script( 'chosen', JOB_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array( 'jquery' ), '1.1.0', true );
+		$current_screen = get_current_screen();
+		if ( 'job_application_page_job-applications-form-editor' !== $current_screen->id ) {
+			return;
+		}
+
+		$form_editor_deps = array( 'jquery', 'jquery-ui-sortable' );
+		if ( wp_script_is( 'select2', 'registered' ) ) {
+			$form_editor_deps[] = 'select2';
+			wp_enqueue_style( 'select2' );
+		} elseif (
+			file_exists( JOB_MANAGER_PLUGIN_DIR . '/assets/js/jquery-chosen/chosen.jquery.min.js' )
+			&& file_exists( JOB_MANAGER_PLUGIN_DIR . '/assets/css/chosen.css' )
+		) {
+			wp_register_script( 'chosen', JOB_MANAGER_PLUGIN_URL . '/assets/js/jquery-chosen/chosen.jquery.min.js', array( 'jquery' ), '1.1.0', true );
+			wp_enqueue_style( 'chosen', JOB_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' );
+			$form_editor_deps[] = 'chosen';
+		}
+
+		wp_register_script( 'wp-job-manager-applications-form-editor', plugins_url( '/assets/js/form-editor.min.js', JOB_MANAGER_APPLICATIONS_FILE ), $form_editor_deps, JOB_MANAGER_APPLICATIONS_VERSION, true );
 		wp_localize_script( 'wp-job-manager-applications-form-editor', 'wp_job_manager_applications_form_editor', array(
 			'cofirm_delete_i18n' => __( 'Are you sure you want to delete this row?', 'wp-job-manager-applications' ),
-			'cofirm_reset_i18n'  => __( 'Are you sure you want to reset your changes? This cannot be undone.', 'wp-job-manager-applications' )
+			'cofirm_reset_i18n'  => __( 'Are you sure you want to reset your changes? This cannot be undone.', 'wp-job-manager-applications' ),
+			'is_rtl'             => is_rtl() ? 1 : 0,
 		) );
-		wp_enqueue_style( 'chosen', JOB_MANAGER_PLUGIN_URL . '/assets/css/chosen.css' );
 	}
 
 	/**
 	 * Output the screen
 	 */
 	public function output() {
+		wp_enqueue_script( 'wp-job-manager-applications-form-editor' );
+
 		$tabs = array(
 			'fields'                 => __( 'Form Fields', 'wp-job-manager-applications' ),
 			'employer-notification'  => 'Employer Notification',
@@ -45,7 +64,6 @@ class WP_Job_Manager_Applications_Form_Editor {
 
 		$tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'fields';
 
-		wp_enqueue_script( 'wp-job-manager-applications-form-editor' );
 		?>
 		<div class="wrap wp-job-manager-applications-form-editor">
 			<h2 class="nav-tab-wrapper">

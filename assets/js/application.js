@@ -1,5 +1,15 @@
 jQuery(document).ready(function($) {
 
+	// Help select2 calculate the true width of multiselect fields in the application form.
+	if ( $.isFunction( $.fn.select2 ) && typeof job_manager_select2_args !== 'undefined' ) {
+		$( '.application_details select[multiple]' ).each( function() {
+			if ( typeof $(this).data( 'chosen' ) !== 'undefined' ) {
+				return;
+			}
+			$(this).select2( job_manager_select2_args );
+		} );
+	}
+
 	if ( $('.job-manager-applications-error').size() ) {
 		$('.application_button').click();
 	}

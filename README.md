@@ -1,1 +1,0 @@
-wp-job-manager-applications

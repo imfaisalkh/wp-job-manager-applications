@@ -20,6 +20,7 @@ class WP_Job_Manager_Applications_Apply {
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'wp', array( $this, 'application_form_handler' ) );
 		add_filter( 'job_manager_locate_template', array( $this, 'disable_application_form' ), 10, 2 );
+		add_filter( 'job_manager_enhanced_select_enabled', array( $this, 'enable_enhanced_select_for_job_application' ) );
 		self::$secret_dir = uniqid();
 	}
 
@@ -34,6 +35,20 @@ class WP_Job_Manager_Applications_Apply {
 		wp_localize_script( 'wp-job-manager-applications', 'job_manager_applications', array(
 			'i18n_required' => __( '"%s" is a required field', 'wp-job-manager-applications' )
 		) );
+	}
+
+	/**
+	 * Enable enhanced select when viewing a job listing.
+	 *
+	 * @param bool $enhanced_select_used_on_page
+	 *
+	 * @return bool
+	 */
+	public function enable_enhanced_select_for_job_application( $enhanced_select_used_on_page ) {
+		if ( is_wpjm_job_listing() ) {
+			return true;
+		}
+		return $enhanced_select_used_on_page;
 	}
 
 	/**
@@ -427,6 +442,8 @@ class WP_Job_Manager_Applications_Apply {
 		if ( isset( $_FILES[ $field_key ] ) && ! empty( $_FILES[ $field_key ] ) && ! empty( $_FILES[ $field_key ]['name'] ) ) {
 			if ( ! empty( $field['allowed_mime_types'] ) ) {
 				$allowed_mime_types = $field['allowed_mime_types'];
+			} elseif ( function_exists( 'job_manager_get_allowed_mime_types' ) ) {
+				$allowed_mime_types = job_manager_get_allowed_mime_types( $field_key );
 			} else {
 				$allowed_mime_types = get_allowed_mime_types();
 			}
@@ -437,7 +454,13 @@ class WP_Job_Manager_Applications_Apply {
 			add_filter( 'job_manager_upload_dir', array( $this, 'upload_dir' ), 10, 2 );
 
 			foreach ( $files_to_upload as $file_to_upload ) {
-				$uploaded_file = job_manager_upload_file( $file_to_upload, array( 'file_key' => $field_key ) );
+				$uploaded_file = job_manager_upload_file(
+					$file_to_upload,
+					array(
+						'file_key'           => $field_key,
+						'allowed_mime_types' => $allowed_mime_types,
+					)
+				);
 
 				if ( is_wp_error( $uploaded_file ) ) {
 					throw new Exception( $uploaded_file->get_error_message() );

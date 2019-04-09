@@ -195,7 +195,7 @@ class WP_Job_Manager_Applications_Dashboard {
 			header( 'Expires: 0' );
 
 			$fp  = fopen('php://output', 'w');
-			$row = array_map( __CLASS__ . '::wrap_column', array(
+			$row = array(
 				__( 'Application date', 'wp-job-manager-applications' ),
 				__( 'Application status', 'wp-job-manager-applications' ),
 	   			__( 'Applicant name', 'wp-job-manager-applications' ),
@@ -204,7 +204,7 @@ class WP_Job_Manager_Applications_Dashboard {
 	   			__( 'Attachment', 'wp-job-manager-applications' ),
 	   			__( 'Applicant message', 'wp-job-manager-applications' ),
 	   			__( 'Rating', 'wp-job-manager-applications' )
-	   		) );
+	   		);
 
 	   		// Other custom fields
 	   		$custom_fields = array();
@@ -230,7 +230,7 @@ class WP_Job_Manager_Applications_Dashboard {
 	   			$row[] = $custom_field;
 	   		}
 
-	   		fwrite( $fp, implode( ',', $row ) . "\n" );
+			fputcsv( $fp, $row );
 
 	   		foreach ( $applications as $application ) {
 	   			$row   = array();
@@ -244,12 +244,14 @@ class WP_Job_Manager_Applications_Dashboard {
 	   			$row[] = get_job_application_rating( $application->ID );
 
 	   			foreach ( $custom_fields as $custom_field ) {
-					$row[] = get_post_meta( $application->ID, $custom_field, true );
+	   				$custom_field_value = get_post_meta( $application->ID, $custom_field, true );;
+	   				if ( is_array( $custom_field_value ) ) {
+	   					$custom_field_value = wp_json_encode( $custom_field_value );
+					}
+					$row[] = $custom_field_value;
 	   			}
 
-	   			$row   = array_map( __CLASS__ . '::wrap_column', $row );
-
-	   			fwrite( $fp, implode( ',', $row ) . "\n" );
+				fputcsv( $fp, $row );
 	   		}
 
 			fclose( $fp );
@@ -340,16 +342,6 @@ class WP_Job_Manager_Applications_Dashboard {
 		) );
 
 		get_job_manager_template( 'job-applications.php', array( 'applications' => $applications->query( $args ), 'job_id' => $job_id, 'max_num_pages' => $applications->max_num_pages, 'columns' => $columns, 'application_status' => $application_status, 'application_orderby' => $application_orderby ), 'wp-job-manager-applications', JOB_MANAGER_APPLICATIONS_PLUGIN_DIR . '/templates/' );
-	}
-
-	/**
-	 * Wrap a column in quotes for the CSV
-	 * @param  string data to wrap
-	 * @return string wrapped data
-	 */
-	public static function wrap_column( $data ) {
-		$data = is_array( $data ) ? json_encode( $data ) : $data;
-		return '"' . str_replace( '"', '""', $data ) . '"';
 	}
 
 	/**
